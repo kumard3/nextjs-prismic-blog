@@ -1,0 +1,17 @@
+.header {
+  padding: 5rem 2rem;
+  display: flex;
+  font-size: 1.6rem;
+}
+
+.title {
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.menu {
+  display: flex;
+}
+.menu a {
+  margin-left: 2rem;
+}

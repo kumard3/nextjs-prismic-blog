@@ -1,0 +1,10 @@
+.main {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.post:not(:last-child) {
+  border-bottom: 0.1rem solid #eee;
+  padding-bottom: 5rem;
+  margin-bottom: 5rem;
+}
