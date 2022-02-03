@@ -9,7 +9,7 @@ const ONE_DAY_IN_SECONDS = 86400
 
 export async function getStaticProps(context) {
   const client = Prismic.client('https://my-blog-t.cdn.prismic.io/api/v2', {})
-  const data = await client.getByUID('blog_post', context.params.slug)
+  const data = await client.getByUID('post', context.params.slug)
 
   return {
     props: {

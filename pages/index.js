@@ -1,10 +1,18 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import BlogPost from "../components/BlogPost";
 import convertPrismicToData from "../utils/convertPrismicToData";
 import Prismic from "@prismicio/client";
+import { RichText } from "prismic-reactjs";
+
+// Project components & functions
+import { Client } from "../utils/prismicHelpers";
+import DefaultLayout from "../layouts";
+import { Header, PostList, SetupRepo } from "../components/home";
+import useUpdatePreviewRef from "../utils/useUpdatePreviewRef";
+
 import richTextToMarkdown from "@edwinjoseph/prismic-richtext-markdown";
 
 const emptySpaceRegex = /^(- .*)\n(\n^- )/gm;
@@ -15,60 +23,71 @@ function test(datas) {
 }
 
 export async function getStaticProps(context) {
-  const client = Prismic.client(
-    "https://next-blog-cms.cdn.prismic.io/api/v2",
-    {}
-  );
-  const data = await client.query(
+  // const client = Prismic.client(
+  //   "https://next-blog-cms.cdn.prismic.io/api/v2",
+  //   {}
+  // );
+  // const data = await client.query(
+  //   Prismic.Predicates.at("document.type", "post"),
+  //   { orderings: "[my.blog_post.publish_date desc]" }
+  // );
+
+  const previewRef = previewData ? previewData.ref : null;
+  const refOption = previewRef ? { ref: previewRef } : null;
+
+  const blogHome = (await Client().getSingle("blog_home", refOption)) || null;
+
+  const postsQueryOptions = { orderings: "[my.post.date desc]", ...refOption };
+  const posts = await Client().query(
     Prismic.Predicates.at("document.type", "post"),
-    { orderings: "[my.blog_post.publish_date desc]" }
+    postsQueryOptions
   );
 
-  const posts = data.results.map((n) => {
-    const converter = n.data.content
-    const converted = richTextToMarkdown(converter).replace(emptySpaceRegex, "$1$2")
+  // const posts = data.results.map((n) => {
+  //   const converter = n.data.content
+  //   const converted = richTextToMarkdown(converter).replace(emptySpaceRegex, "$1$2")
 
-
-    return {
-      date: n.data.date,
-      content: converted,
-      slug: n.uid,
-      title: n.data.title[0].text,
-      // content:n.
-    };
-  });
+  //   return {
+  //     date: n.data.date,
+  //     content: converted,
+  //     slug: n.uid,
+  //     title: n.data.title[0].text,
+  //     // content:n.
+  //   };
+  // });
 
   return {
     props: {
-      posts,
-      revalidate: ONE_DAY_IN_SECONDS,
-      data: data.results,
+      blogHome,
+      posts: posts ? posts.results : [],
+      previewRef,
     },
   };
 }
 
-export default function Home({ posts, data }) {
-  console.log(posts);
-  console.log(data);
+export default function Home({ blogHome, posts, previewRef }) {
+  // console.log(posts);
+  // console.log(data);
   // const content = posts.map((n) => n.data.content)
-  return (
-    <>
-      <Head>
-        <title>My Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  
+  useUpdatePreviewRef(previewRef, blogHome.id)
 
-      <main className={styles.main}>
-        <Header />
+  if (blogHome && blogHome.data) {
+    return (
+      <DefaultLayout>
+        <Head>
+          <title>{RichText.asText(blogHome.data.headline)}</title>
+        </Head>
+        <Header
+          image={blogHome.data.image}
+          headline={blogHome.data.headline}
+          description={blogHome.data.description}
+        />
+        <PostList posts={posts} />
+      </DefaultLayout>
+    );
+  }
 
-        {
-          posts.map(p => (
-            <div className={styles.post} key={p.slug}>
-              <BlogPost {...p} />
-            </div>
-          ))
-        }
-      </main>
-    </>
-  );
-}
+  // Message when repository has not been setup yet
+  return <SetupRepo />;
+};

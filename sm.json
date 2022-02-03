@@ -1,0 +1,6 @@
+{
+	"apiEndpoint": "https://blog-cm.prismic.io/api/v2",
+	"libraries": [
+		"@/slices"
+	]
+}
