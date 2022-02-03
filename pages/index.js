@@ -8,14 +8,6 @@ import DefaultLayout from "../layouts";
 import { Header, PostList, SetupRepo } from "../components/home";
 import useUpdatePreviewRef from "../utils/useUpdatePreviewRef";
 
-import richTextToMarkdown from "@edwinjoseph/prismic-richtext-markdown";
-
-const emptySpaceRegex = /^(- .*)\n(\n^- )/gm;
-
-
-function test(datas) {
-  richTextToMarkdown(datas).replace(emptySpaceRegex, "$1$2");
-}
 
 export async function getStaticProps(context) {
 
