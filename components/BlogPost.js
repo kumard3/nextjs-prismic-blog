@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import Link from 'next/link'
-import styles from '../styles/BlogPost.module.css'
 import marked from 'marked'
 
 export default function BlogPost({

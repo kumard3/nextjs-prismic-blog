@@ -19,6 +19,7 @@ export const accessToken  = process.env.PRISMIC_API_TOKEN;
 export const API_LOCALE = process.env.PRISMIC_REPOSITORY_LOCALE;
 // -- Link resolution rules
 // Manages the url links to internal Prismic documents
+
 export const linkResolver = (doc) => {
   if (doc.type === 'post') {
     return `/blog/${doc.uid}`
