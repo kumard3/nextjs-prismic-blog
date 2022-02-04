@@ -128,6 +128,75 @@
           }
         }
       },
+      "post_card_without_image": {
+        "library": "slices",
+        "id": "post_card_without_image",
+        "name": "PostCardWithoutImage",
+        "description": "PostCardWithoutImage",
+        "model": {
+          "id": "post_card_without_image",
+          "type": "SharedSlice",
+          "name": "PostCardWithoutImage",
+          "description": "PostCardWithoutImage",
+          "variations": [
+            {
+              "id": "default-slice",
+              "name": "Default slice",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "PostCardWithoutImage",
+              "primary": {
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading1",
+                    "label": "Title",
+                    "placeholder": "This is where it all begins..."
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Description",
+                    "placeholder": "A nice description of your feature"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "mocks": {
+          "default-slice": {
+            "variation": "default-slice",
+            "name": "Default slice",
+            "slice_type": "post_card_without_image",
+            "items": [],
+            "primary": {
+              "title": [
+                {
+                  "type": "heading1",
+                  "text": "Redefine leading-edge infrastructures",
+                  "spans": []
+                }
+              ],
+              "description": [
+                {
+                  "type": "paragraph",
+                  "text": "Mollit ad tempor quis ullamco excepteur qui velit ipsum fugiat duis duis Lorem incididunt elit velit. Laborum aliquip non excepteur irure duis dolor aliquip magna pariatur. Proident ad ad duis quis sint dolor.",
+                  "spans": []
+                }
+              ]
+            }
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "isDirectory": true,
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
       "posts_cards": {
         "library": "slices",
         "id": "posts_cards",
