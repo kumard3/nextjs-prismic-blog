@@ -1,0 +1,9 @@
+{
+  "apiEndpoint": "https://kumard3.prismic.io/api/v2",
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
+  "libraries": [
+    "@/slices"
+  ],
+  "_latest": "0.1.0",
+  "storybook": "http://localhost:8888"
+}

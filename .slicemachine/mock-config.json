@@ -1,0 +1,19 @@
+{
+  "slices": {
+    "MySlice": {
+      "default-slice": {
+        "primary": {}
+      }
+    },
+    "PostsCards": {
+      "default-slice": {
+        "primary": {},
+        "items": {
+          "image": {
+            "content": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85"
+          }
+        }
+      }
+    }
+  }
+}
