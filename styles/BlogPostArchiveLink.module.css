@@ -1,9 +1,0 @@
-.post {
-  padding: 0 2rem;
-  font-size: 1.6rem;
-  display: flex;
-  justify-content: space-between;
-}
-.post a {
-  color: blue;
-}

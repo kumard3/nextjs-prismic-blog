@@ -1,32 +1,4 @@
-import Head from 'next/head'
-import styles from '../../styles/BlogPage.module.css'
-import Header from '../../components/Header'
-import BlogPost from '../../components/BlogPost'
-import convertPrismicToData from '../../utils/convertPrismicToData'
-import Prismic from '@prismicio/client'
-
-const ONE_DAY_IN_SECONDS = 86400
-
-export async function getStaticProps(context) {
-  const client = Prismic.client('https://my-blog-t.cdn.prismic.io/api/v2', {})
-  const data = await client.getByUID('post', context.params.slug)
-
-  return {
-    props: {
-      data: convertPrismicToData(data),
-      revalidate: ONE_DAY_IN_SECONDS
-    }
-  }
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking'
-  }
-}
-
-export default function Blog({ data }) {
+export default function Blog() {
   return (
     <>
       <Head>
@@ -34,11 +6,9 @@ export default function Blog({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Header />
-
-        <BlogPost isMainPage {...data} />
+      <main className="">
+        <h1>heelo</h1>
       </main>
     </>
-  )
+  );
 }

@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "slicemachine": "start-slicemachine"
+    "test": "jest"
   },
   "dependencies": {
     "@edwinjoseph/prismic-richtext-markdown": "^1.2.5",
